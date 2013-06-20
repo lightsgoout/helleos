@@ -1,0 +1,96 @@
+html {
+height: 100%;
+font-size: 75%;
+overflow: hidden!important;
+}
+
+body {
+height: 100%;
+font: normal 1em/1.4 Arial,sans-serif;
+color: #eee;
+height: 100%;
+background-color: #FEE;
+overflow: hidden!important;
+}
+
+#top {
+    width: 100%;
+}
+
+#top-left {
+float: left;
+width: 60%;
+}
+
+#top-left h1 {
+white-space: nowrap;
+padding: .1em 5px .2em;
+background-color: #111;
+position: relative;
+float: left;
+top: 0;
+left: 0;
+clear: right;
+}
+
+#top-left p {
+padding: .1em 5px .2em;
+background-color: #111;
+clear: both;
+float: left;
+}
+
+a {
+color: #00bff3;
+}
+
+#top-right {
+margin: 0 4em 0 2em;
+float: right;
+}
+
+#top-contacts {
+position: absolute;
+top: 4em;
+right: 2em;
+}
+
+#top-right p, #top-contacts {
+padding: .1em 5px .2em;
+background-color: #111;
+white-space: nowrap;
+float: right;
+clear: both;
+}
+
+#prev-link {
+left: 0;
+}
+
+#next-link {
+right: 0;
+}
+
+#prev-link, #next-link {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    cursor: hand;
+}
+
+#photos {
+height: 699px;
+overflow: hidden;
+cursor: move;
+cursor: -moz-grab;
+clear: both;
+}
+
+#photos img {
+float: left;
+}
+img {
+border: 0;
+margin: 0;
+}

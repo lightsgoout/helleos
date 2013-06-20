@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Катерина Журова / Helleos</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}/style.css" type="text/css" media="screen,projection">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+<div id="top" style="opacity: 0.8;">
+    <div id="top-left">
+        <h1>Привет, я <a href="/" title="Журова Катерина">Журова Катерина</a>. </h1>
+{#        Я фотографирую <span id="menu"><a href="/weddings/" title="свадьбы">свадьбы</a>,#}
+{#            <a href="/studio/" title="В студии и дома">в студии и дома</a>,#}
+{#            <a href="/for-fun/" title="для души">для души</a></span>.#}
+{#        #}
+    </div>
+    <div id="top-right">
+        <p>Как со мной связаться? <a href="#" class="dashed-link" id="toggle-contacts">Очень просто</a>.</p><p class="vcard" id="top-contacts" style="opacity: 0;"><span class="fn">Оджубейская Катерина</span>
+                Электронная почта <a href="mailto:grin-pak-m@mail.ru" class="email">grin-pak-m@mail.ru</a><br>
+                Телефон <span class="tel"><span class="type">Рабочий</span><span class="value">+7 (926) 245-63-69</span></span>, <span class="tel"><span class="type">Рабочий</span><span class="value">ICQ 248-288-758</span></span>, <span class="tel"><span class="type">Рабочий</span><span class="value">skype dvoishnica</span></span>, <span class="tel"><span class="type">Рабочий</span><span class="value">http://vk.com/okfot</span></span><br>
+                Ну, и мой сайт <a class="url" href="http://www.okfot.ru/">www.okfot.ru</a><span class="adr"><span class="locality">Москва</span><span class="country-name">Россия</span></span></p>
+    </div>
+    <div><img src="/m/prev.png" id="prev-link" alt=""><img src="/m/next.png" id="next-link" alt=""></div>
+</div>
+<div id="photos">
+    {% block photos %}
+    {% endblock %}
+</div>
+<script type="text/javascript" charset="utf-8">
+        $(function(){
+            var totalWidth = 0;
+            var photoPreviews = $('#photos');
+            var previewsWrap = $('#photos-wrap');
+            var halfWidth = $(window).width()/2;
+
+            $('img', previewsWrap).each(function(i, e){
+                totalWidth += $(this).width();
+{#                $(this).css({#}
+{#                    opacity: 0.8#}
+{#                }).hover(function(){#}
+{#                    $(this).animate({#}
+{#                        opacity: 1#}
+{#                    }, 'fast');#}
+{#                }, function(){#}
+{#                    $(this).animate({#}
+{#                        opacity: 0.8#}
+{#                    }, 'fast');#}
+{#                });#}
+            });
+
+            previewsWrap.width(totalWidth);
+
+            photoPreviews.mousedown(function (event) {
+                $(this).data('down', true).data('x', event.clientX).data('scrollLeft', this.scrollLeft);
+                return false;
+            }).mouseup(function (event) {
+                $(this).data('down', false);
+            }).mousemove(function (event) {
+                if ($(this).data('down') == true) {
+                    this.scrollLeft = $(this).data('scrollLeft') + $(this).data('x') - event.clientX;
+                }
+            });
+
+            $(window).mouseout(function (event) {
+                if (photoPreviews.data('down')) {
+                    try {
+                        if (event.originalTarget.nodeName == 'BODY' || event.originalTarget.nodeName == 'HTML') {
+                            photoPreviews.data('down', false);
+                        }
+                    } catch (e) {}
+                }
+            });
+
+            $('#next-link').click(function(){
+                photoPreviews.animate({
+                    scrollLeft: '+=' + halfWidth
+                }, 300);
+            });
+
+            $('#prev-link').click(function(){
+                photoPreviews.animate({
+                    scrollLeft: '-=' + halfWidth
+                }, 300);
+            });
+
+            $(document).keydown(function(e) {
+                if(e.keyCode == 0x27) {
+                    $('#next-link').trigger('click');
+                }
+                if(e.keyCode == 0x25) {
+                    $('#prev-link').trigger('click');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

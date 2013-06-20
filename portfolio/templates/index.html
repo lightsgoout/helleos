@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block photos %}
+    <div id="photos-wrap" style="width: 11781px;">
+    {% for photo in photos %}
+        <img src="{{ photo.ori.source }}" width="1050" alt="">
+    {% endfor %}
+    </div>
+
+{% endblock %}
