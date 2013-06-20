@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^$', portfolio.views.index),
+    url(r'^category/(?P<category>\w+)/', portfolio.views.by_category),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^flickr/', include(flickr_urls)),
 )
